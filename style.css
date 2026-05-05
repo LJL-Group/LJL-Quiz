@@ -66,45 +66,51 @@ nav a:hover {
 
 
 /* ========================================= */
-/* --- CONTROLS (TOP & BOTTOM RIGHT) --------- */
+/* --- CONTROLS (TOP & BOTTOM) -------------- */
 /* ========================================= */
 .controls {
     position: fixed; /* Bleibt immer am Platz */
     z-index: 100; /* Stellt sicher, dass die Buttons über allem liegen */
     display: flex;
-    flex-direction: column; /* Stapelt Elemente vertikal */
     gap: 15px;
 }
 
-/* Top Right (Theme Toggle) */
-.controls.top-right {
+/* Top Left (Theme Toggle) */
+.controls.top-left {
     top: 20px;
-    right: 20px; 
+    left: 20px; 
 }
 
-/* Bottom Right (GitHub Link & Dev Settings Button) */
+/* Bottom Left (Dev Settings Button) */
+.controls.bottom-left {
+    bottom: 20px;
+    left: 20px; 
+}
+
+/* Bottom Right (GitHub Link & Secondary Controls) */
 .controls.bottom-right {
     bottom: 20px;
     right: 20px; 
 }
 
 
-.control-btn {
+.control-btn, .control-link {
     background: none;
     border: 1px solid var(--primary-accent); 
     color: var(--text-color);
     cursor: pointer;
-    font-size: 1em; /* Etwas kleiner für die Knöpfe */
+    font-size: 1em; 
     padding: 8px 12px;
     transition: color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
     border-radius: 6px;
 }
 
-.control-btn:hover {
+.control-btn:hover, .control-link:hover {
     transform: scale(1.1);
     color: var(--primary-accent);
     border-color: var(--primary-accent);
 }
+
 
 /* ========================================= */
 /* --- QUIZ-ELEMENTE (TITEL/BILD) ------------------- */
