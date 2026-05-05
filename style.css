@@ -66,12 +66,13 @@ nav a:hover {
 
 
 /* ========================================= */
-/* --- CONTROLS (TOP RIGHT & BOTTOM LEFT) --- */
+/* --- CONTROLS (TOP & BOTTOM RIGHT) --------- */
 /* ========================================= */
 .controls {
     position: fixed; /* Bleibt immer am Platz */
     z-index: 100; /* Stellt sicher, dass die Buttons über allem liegen */
     display: flex;
+    flex-direction: column; /* Stapelt Elemente vertikal */
     gap: 15px;
 }
 
@@ -81,10 +82,10 @@ nav a:hover {
     right: 20px; 
 }
 
-/* Bottom Left (Dev Settings Button) */
-.controls.bottom-left {
+/* Bottom Right (GitHub Link & Dev Settings Button) */
+.controls.bottom-right {
     bottom: 20px;
-    left: 20px; /* Unten links */
+    right: 20px; 
 }
 
 
@@ -93,7 +94,7 @@ nav a:hover {
     border: 1px solid var(--primary-accent); 
     color: var(--text-color);
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1em; /* Etwas kleiner für die Knöpfe */
     padding: 8px 12px;
     transition: color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
     border-radius: 6px;
@@ -192,68 +193,29 @@ button:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
 }
 
-</style>
-</head>
+/* Debug Panel Styling */
+#debugPanelContent {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px dashed var(--primary-accent);
+    background-color: var(--bg-color);
+    max-height: 400px;
+    overflow-y: auto;
+}
 
-<body id="quizBody">
+/* Stil für die Liste der Bilder */
+#debugPanelContent ul {
+    list-style-type: none;
+    padding: 0;
+}
+#debugPanelContent li {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
 
-<!-- Controls für Theme & Dev (Unten Links) -->
-<div class="controls bottom-left">
-    <button class="control-btn" id="devSettingsBtn" title="Entwickler-Tools">⚙️</button>
-</div>
+/* Stil für den Zustand */
+#debugPanelContent h4, #debugPanelContent p strong {
+    display: inline-block;
+    min-width: 180px;
+}
 
-<!-- Quiz Container -->
-<div id="quiz-container">
-    <!-- Menü -->
-    <nav>
-      <a href="#" onclick="selectCategory('spiele'); return false;">🎮 Spiele</a>
-      <a href="#" onclick="selectCategory('serien'); return false;">📺 Serien</a>
-      <a href="#" onclick="selectCategory('filme'); return false;">🎬 Filme</a>
-    </nav>
-
-    <!-- Hier ist der Titel -->
-    <h1 id="quiz-title">Quiz für Gamer</h1>
-    <p style="font-size: 1.3em; margin-bottom: 40px;">Wähle oben eine Kategorie, um zu starten!</p>
-
-    <!-- Bildanzeige (wird durch JS gesteuert) -->
-    <img id="question-img" src="" alt="Fragebild" style="display:none;" />
-    <h2 id="question">Bitte wähle eine Kategorie!</h2>
-
-    <!-- Antwort-Buttons (sichtbar, aber inaktiv bis zur Kategorieauswahl) -->
-    <button onclick="checkAnswer(0)" id="a"></button>
-    <button onclick="checkAnswer(1)" id="b"></button>
-    <button onclick="checkAnswer(2)" id="c"></button>
-    <button onclick="checkAnswer(3)" id="d"></button>
-
-    <!-- Ergebnisanzeige -->
-    <p id="result"></p>
-</div >
-
-
-<!-- ⚙️ DEV SETTINGS MODAL (Der "Settings Wheel") -->
-<div id="settingsModal">
-    <div style="background-color: var(--secondary-bg); margin: 5% auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 600px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);">
-        <h2 style="color: var(--primary-accent); border-bottom: 1px solid #444; padding-bottom: 10px;">⚙️ Entwickler-Konsolen</h2>
-        
-        <!-- Dev Testing Area -->
-        <div style="margin-top: 20px; text-align: left; background: var(--bg-color); padding: 15px; border-radius: 6px;">
-            <h3 style="margin-top: 0;">Aktueller Zustand</h3>
-            <p><strong>Theme Mode:</strong> <span id="themeStatus">Laden...</span></p>
-            <p><strong>Score/Fragen:</strong> <span id="scoreStatus">0 / 0</span></p>
-            <p><strong>Quiz Index (Nächste Frage):</strong> <span id="indexStatus">0</span></p>
-        </div>
-
-        <!-- Test-Funktion -->
-        <button onclick="console.log('Dev Test erfolgreich!')" style="margin-top: 25px; background-color: #3b82f6;">Test Button klicken (Browser Console prüfen)</button>
-        
-        <!-- Schließen-Button -->
-        <button onclick="document.getElementById('settingsModal').style.display='none';" style="background-color: red; margin-top: 15px;">Schließen (X)</button>
-    </div >
-</div>
-
-
-<!-- Verknüpfung zur Optik und Logik! -->
-<script src="script.js"></script>
-
-</body>
-</html>
