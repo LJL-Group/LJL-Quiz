@@ -281,7 +281,7 @@ function toggleTheme() {
     if (body.classList.contains('light-mode')) {
         localStorage.setItem('theme', 'light');
         themeToggleBtn.innerHTML = '☀️'; 
-        document.getElementById('themeStatus').innerText = 'LIGHT MODE AKTIV';
+        document.getElementById('themeStatus').innerText = 'FLASH BANG MODE AKTIV';
     } else {
         localStorage.setItem('theme', 'dark');
         themeToggleBtn.innerHTML = '🌙'; 
@@ -294,7 +294,7 @@ function checkTheme() {
     if (savedTheme === 'light') {
         body.classList.add('light-mode');
         themeToggleBtn.innerHTML = '☀️'; 
-        document.getElementById('themeStatus').innerText = 'LIGHT MODE AKTIV';
+        document.getElementById('themeStatus').innerText = 'FLASH BANG AKTIV';
     } else {
         themeToggleBtn.innerHTML = '🌙'; 
         document.getElementById('themeStatus').innerText = 'DARK MODE AKTIV';
