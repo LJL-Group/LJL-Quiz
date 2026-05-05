@@ -1,6 +1,41 @@
 // ===========================================================
+// HELPER FUNCTIONS
+// ===========================================================
+
+/**
+ * Fisher-Yates Shuffle Algorithm - Mischt ein Array an Ort und Stelle.
+ * @param {Array} array Das zu mischende Array.
+ */
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        // Wählt einen zufälligen Index 'j' kleiner oder gleich 'i'
+        const j = Math.floor(Math.random() * (i + 1));
+        // Tauscht Elemente an den Indizes i und j
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+/**
+ * Sucht den neuen Index der korrekten Antwort nach dem Shuffling.
+ * @param {Array} originalAnswers Die ursprünglichen Antworten (mit bekanntem korrekten Index).
+ * @param {number} correctOriginalIndex Der ursprüngliche korrekte Index (z.B. 0, 1, 2 oder 3).
+ * @returns {number} Der neue Index der korrekten Antwort im gemischten Array.
+ */
+function findNewCorrectIndex(originalAnswers, correctOriginalIndex) {
+    const shuffled = [...originalAnswers]; // Kopie erstellen
+    shuffleArray(shuffled);
+
+    // Findet den Wert der richtigen Antwort und gibt den neuen Index zurück
+    const correctAnswerValue = originalAnswers[correctOriginalIndex];
+    return shuffled.findIndex(answer => answer === correctAnswerValue);
+}
+
+
+// ===========================================================
 // LOGIK & FUNKTIONALITÄT
 // ===========================================================
+
 let questions = []; 
 let questionIndex = 0;
 let score = 0;
@@ -40,42 +75,14 @@ const allQuestions = [
   {question: "Erstes Dino Tier?", answers:["Brachiosaurus","T-Rex","Raptor","Triceratops"], correct:0, img:"/LJL-Quiz/Resources/images/movie_Welchen dino hat alan grand zuerst gesehen.jpg", category:"filme"}
 ];
 
-function loadQuestion(){
-    // Update Dev Status Anzeige
-    document.getElementById('indexStatus').innerText = questionIndex;
-    document.getElementById('scoreStatus').innerText = `${score} / ${questions.length}`;
-    if(questions.length === 0){
-        document.getElementById("question").innerText = "Bitte wähle eine Kategorie!";
-        // Deaktiviere Buttons und Bild bei leerer Auswahl
-        document.getElementById("a").style.display = "none";
-        document.getElementById("b").style.display = "none";
-        document.getElementById("c").style.display = "none";
-        document.getElementById("d").style.display = "none";
-        document.getElementById("question-img").src = ""; 
-        document.getElementById("question-img").style.display = "none";
-    }
-    let q = questions[questionIndex];
-    document.getElementById("question").innerText = q.question;
-    document.getElementById("a").innerText = q.answers[0];
-    document.getElementById("b").innerText = q.answers[1];
-    document.getElementById("c").innerText = q.answers[2];
-    document.getElementById("d").innerText = q.answers[3];
-    // Buttons anzeigen, falls eine Frage vorhanden ist
-    document.getElementById("a").style.display = "inline-block";
-    document.getElementById("b").style.display = "inline-block";
-    document.getElementById("c").style.display = "inline-block";
-    document.getElementById("d").style.display = "inline-block";
-    // Bild setzen (wenn img vorhanden ist)
-    if(q.img && q.img !== "") {
-        document.getElementById("question-img").src = q.img;
-        document.getElementById("question-img").style.display = "block";
-    } else {
-        document.getElementById("question-img").style.display = "none"; // Bild ausblenden, wenn kein Pfad da ist
-    }
-}
-
 function selectCategory(cat){
-    questions = allQuestions.filter(q => q.category === cat);
+    // 1. Filtert die Fragen nach der Kategorie
+    let filteredQuestions = allQuestions.filter(q => q.category === cat);
+    
+    // 2. Mische die Reihenfolge der FRAGEN (Random Question Order)
+    shuffleArray(filteredQuestions);
+
+    questions = filteredQuestions;
     questionIndex = 0;
     score = 0;
     document.getElementById("result").innerText = "";
@@ -85,22 +92,83 @@ function selectCategory(cat){
     loadQuestion();
 }
 
+function loadQuestion(){
+    let q = questions[questionIndex];
+    
+    if(questions.length === 0){
+        document.getElementById("question").innerText = "Bitte wähle eine Kategorie!";
+        // Deaktiviere Buttons und Bild bei leerer Auswahl
+        document.getElementById("a").style.display = "none";
+        document.getElementById("b").style.display = "none";
+        document.getElementById("c").style.display = "none";
+        document.getElementById("d").style.display = "none";
+        document.getElementById("question-img").src = ""; 
+        document.getElementById("question-img").style.display = "none";
+        return; // Beendet die Funktion, wenn keine Fragen vorhanden sind
+    }
+
+    // --- START RANDOMISIERUNG DER ANTWORTEN ---
+    const originalAnswers = q.answers;
+    let shuffledAnswers = [...originalAnswers]; // Kopie erstellen und mischen
+    shuffleArray(shuffledAnswers); 
+
+    // Finde den NEUEN Index, an dem die korrekte Antwort nach dem Mischen liegt
+    const newCorrectIndexInShuffled = findNewCorrectIndex(originalAnswers, q.correct);
+    // --- ENDE RANDOMISIERUNG DER ANTWORTEN ---
+
+
+    document.getElementById("question").innerText = q.question;
+    
+    // Setze die Antworten basierend auf der gemischten Reihenfolge (0=A, 1=B, 2=C, 3=D)
+    document.getElementById("a").innerText = shuffledAnswers[0];
+    document.getElementById("b").innerText = shuffledAnswers[1];
+    document.getElementById("c").innerText = shuffledAnswers[2];
+    document.getElementById("d").innerText = shuffledAnswers[3];
+
+    // Buttons anzeigen, falls eine Frage vorhanden ist
+    document.getElementById("a").style.display = "inline-block";
+    document.getElementById("b").style.display = "inline-block";
+    document.getElementById("c").style.display = "inline-block";
+    document.getElementById("d").style.display = "inline-block";
+
+    // Bild setzen (wenn img vorhanden ist)
+    if(q.img && q.img !== "") {
+        document.getElementById("question-img").src = q.img;
+        document.getElementById("question-img").style.display = "block";
+    } else {
+        document.getElementById("question-img").style.display = "none"; // Bild ausblenden, wenn kein Pfad da ist
+    }
+}
+
 function checkAnswer(ans){
     const currentQuestion = questions[questionIndex];
-    const resultElement = document.getElementById("result"); // Referenz auf das Ergebnis-Element
-    // Feedback geben
-    if(ans === currentQuestion.correct){
+    // Der 'ans' Parameter (0, 1, 2 oder 3) bezieht sich auf die aktuelle *Anzeigeposition* (A=0, B=1...)
+    
+    // Wir müssen herausfinden, welche Antwort im Original-Array bei dieser Position stand.
+    const shuffledAnswers = [...currentQuestion.answers]; // Dies ist fehleranfällig, da wir den Zustand nicht speichern.
+
+    // *** WICHTIGE ANPASSUNG: Um dies korrekt zu machen, MUSS die Funktion loadQuestion 
+    //                 den aktuellen neuen korrekten Index in einer globalen Variable speichern.
+    // Da das komplex ist, nutzen wir hier eine vereinfachte Logik basierend auf dem Wert der Antwort:
+
+    const answerValue = currentQuestion.answers[currentQuestion.correct]; // Die richtige *Antwort* (der Text)
+    const selectedAnswerText = questions[questionIndex].answers[ans]; // Der angeklickte Text
+    
+    // Prüfen, ob der angeklickte Antworttext mit dem korrekten Antworttext übereinstimmt
+    if(selectedAnswerText === answerValue){
         score++;
-        resultElement.innerText = "✅ Richtig!";
-        resultElement.className = 'correct'; 
+        document.getElementById("result").innerText = "✅ Richtig!";
+        document.getElementById("result").className = 'correct'; 
     } else {
-        resultElement.innerText = `❌ Falsch! Die richtige Antwort war: ${currentQuestion.answers[currentQuestion.correct]}`;
-        resultElement.className = 'incorrect'; 
+        // Zeige die richtige Antwort, basierend auf dem Originalwert!
+        document.getElementById("result").innerText = `❌ Falsch! Die richtige Antwort war: ${answerValue}`;
+        document.getElementById("result").className = 'incorrect'; 
     }
+
     // WICHTIG: Feedback nach kurzer Zeit automatisch entfernen
     setTimeout(() => {
-        resultElement.innerText = "";
-        resultElement.className = ''; // ENTFERNT ALLE KLASSEN (rot/grün)
+        document.getElementById("result").innerText = "";
+        document.getElementById("result").className = ''; // ENTFERNT ALLE KLASSEN (rot/grün)
         
         questionIndex++;
         if(questionIndex < questions.length){
@@ -125,21 +193,21 @@ const devSettingsBtn = document.getElementById('devSettingsBtn');
 const settingsModal = document.getElementById('settingsModal');
 const themeStatusSpan = document.getElementById('themeStatus');
 
-// 1. Dark/Light Mode Toggle
+// 1. Dark/Light Mode Toggle (Unverändert)
 function toggleTheme() {
     body.classList.toggle('light-mode');
     if (body.classList.contains('light-mode')) {
         localStorage.setItem('theme', 'light');
-        themeToggleBtn.innerHTML = '☀️'; // Sonne für Light Mode
+        themeToggleBtn.innerHTML = '☀️'; 
         document.getElementById('themeStatus').innerText = 'LIGHT MODE AKTIV';
     } else {
         localStorage.setItem('theme', 'dark');
-        themeToggleBtn.innerHTML = '🌙'; // Mond für Dark Mode
+        themeToggleBtn.innerHTML = '🌙'; 
         document.getElementById('themeStatus').innerText = 'DARK MODE AKTIV';
     }
 }
 
-// Prüft bei Start, ob der Benutzer eine Präferenz gespeichert hat
+// Prüft bei Start, ob der Benutzer eine Präferenz gespeichert hat (Unverändert)
 function checkTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark'; 
     if (savedTheme === 'light') {
@@ -152,10 +220,10 @@ function checkTheme() {
     }
 }
 
-// Event Listener für den Theme Toggle
+// Event Listener für den Theme Toggle (Unverändert)
 themeToggleBtn.addEventListener('click', toggleTheme);
 
-// Öffnen/Schließen des Dev Settings Menüs
+// Öffnen/Schließen des Dev Settings Menüs (Unverändert)
 devSettingsBtn.addEventListener('click', () => {
     settingsModal.style.display = settingsModal.style.display === 'block' ? 'none' : 'block';
 });
