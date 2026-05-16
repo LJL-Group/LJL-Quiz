@@ -356,27 +356,6 @@ function showDebugPanel() {
 }
 
 
-function runApiTest() {
-    const commandInput = document.getElementById('apiCommandInput');
-    const command = commandInput.value.trim().toLowerCase();
-    const debugPanel = document.getElementById('debugPanelContent');
-
-    if (command === "anime_quiz") {
-        // Hier kommt später die TMDB/RAWG API-Logik hin!
-        let message = `\n*** API TEST ERFOLGREICH ***\n`;
-        message += `Anfrage für 'Anime Quiz' wurde ausgelöst.\n`;
-        message += `Status: WARTE AUF API ENDPOINT. Hier würde der Fetch-Aufruf starten.\n`;
-        message += `Vorbereitung abgeschlossen. Kann jetzt die TMDB/RAWG Daten laden!`;
-
-        // Zeige das Ergebnis im Debug Panel an, ohne Quiz zu starten
-        debugPanel.innerHTML = message;
-        document.getElementById('apiCommandInput').value = ''; // Eingabefeld leeren
-        debugPanel.style.display = 'block';
-
-    } else {
-         alert("Ungültiger API Command. Bitte geben Sie 'anime_quiz' ein.");
-    }
-}
 
 
 // Event Listener für den Theme Toggle (Unverändert)
