@@ -1,11 +1,7 @@
-# passwort für debug tool: adminquiz
+# passwort für debug tool: JamieMagChina
 debug tool gibt auch lösungen sowie bilder location an
 
 # 🎮🎬 LJL Quiz: Gamer & Culture Challenge
-
-[![GitHub Pages](https://img.shields.io/github/pages/v/LJL-Quiz)](https://anibase-main.github.io/LJL-Quiz/)
-![Auto Assign](https://github.com/LJL-Quiz/LJL-Quiz/actions/workflows/auto-assign.yml/badge.svg)
-![Proof HTML](https://github.com/LJL-Quiz/LJL-Quiz/actions/workflows/proof-html.yml/badge.svg)
 
 ## 🚀 Über das Projekt
 **LJL Quiz** ist ein modernes, responsives und hochfunktionales Multiple-Choice-Quiz, das Wissen über drei riesige Bereiche abfragt: **Filme, Serien und Videospiele.** Es wurde mit Fokus auf eine erstklassige User Experience (UX) entwickelt.
