@@ -1,4 +1,4 @@
-# passwort für debug tool: JamieMagChina
+# passwort für debug tool: JamieMagChina oder adminquiz (muss noch gefixed werden)
 debug tool gibt auch lösungen sowie bilder location an
 
 # 🎮🎬 LJL Quiz: Gamer & Culture Challenge
