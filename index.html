@@ -67,11 +67,6 @@
             <input type="password" id="debugPassword" placeholder="Passwort eingeben (adminquiz)">
             <button id="showDebugBtn" style="padding: 10px; margin-top: 10px;">Debug-Panel anzeigen</button>
 
-            <!-- API Trigger Input -->
-            <p style="margin-top: 20px;">API Test Command:</p>
-            <input type="text" id="apiCommandInput" placeholder="anime_quiz">
-            <button onclick="runApiTest()" style="padding: 10px; margin-left: 10px;">Ausführen</button>
-
             <!-- Debug Panel Container (Wird erst bei richtigem Passwort sichtbar) -->
             <div id="debugPanelContent" style="display: none;"></div>
         </div>
@@ -88,7 +83,7 @@
 </div>
 
 <!-- GitHub Link Button -->
-<div class="controls bottom-right" style="margin-top: 15px;">
+<div class="controls bottom-left" style="margin-top: 15px;">
     <a href="https://github.com/LJL-Quiz/LJL-Quiz" target="_blank" class="control-link">🔗 Zu GitHub</a>
 </div>
 
@@ -162,7 +157,7 @@ function findNewCorrectIndex(originalAnswers, correctOriginalIndex) {
 
 
 // ===========================================================
-// QUIZ LOGIC (Unverändert, da fehlerfrei)
+// QUIZ LOGIC 
 // ===========================================================
 
 function selectCategory(cat){
@@ -292,7 +287,7 @@ function toggleTheme() {
 function checkTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark'; 
     if (savedTheme === 'light') {
-        body.classList.add('light-mode');
+        body.classList.add('FLASH-BANG-AKTIV');
         themeToggleBtn.innerHTML = '☀️'; 
         document.getElementById('themeStatus').innerText = 'FLASH BANG AKTIV';
     } else {
