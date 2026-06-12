@@ -53,7 +53,7 @@ Dieses Projekt steht unter der **GNU General Public License v3.0**. Jeder ist fr
 3.  Fügen Sie Ihren Code hinzu und erstellen Sie einen Pull Request!
 
 [ico-version]: https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white
-[ico-license]: ![License: GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-blue)
+[ico-license]: (https://img.shields.io/badge/license-GPL--3.0-blue)
 [link-repo]: https://github.com/LJL-Group/LJL-Quiz/
 
 ---
