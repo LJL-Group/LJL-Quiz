@@ -1,6 +1,6 @@
 # 🎮🎬 LJL Quiz: Gamer & Culture Challenge
 
-#Updates
+*Updates*
 website als Browser-App verfügbar
 
 ## 🚀 Über das Projekt
