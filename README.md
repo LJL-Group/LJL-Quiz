@@ -45,7 +45,7 @@ debug tool gibt auch lösungen sowie bilder location an
 ## 📜 Lizenz und Beitrag
 Dieses Projekt steht unter der **GNU General Public License v3.0**. Jeder ist frei, den Code zu nutzen, anzupassen und weiterzuverbreiten.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=LJL-Group/Vectras-VM-Android&type=date&legend=top-left)](https://www.star-history.com/#xoureldeen/Vectras-VM-Android&AnBui2004/Vectras-VM-Emu-Android&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=LJL-Group/LJL-Quiz&type=date&legend=top-left)](https://www.star-history.com/#xoureldeen/Vectras-VM-Android&AnBui2004/Vectras-VM-Emu-Android&type=date&legend=top-left)
 
 **Bist du interessiert daran mitzumachen?**
 1.  Gabeln Sie dieses Repository (`Fork`).
