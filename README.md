@@ -52,4 +52,8 @@ Dieses Projekt steht unter der **GNU General Public License v3.0**. Jeder ist fr
 2.  Erstellen Sie einen neuen Branch für Ihre Änderungen.
 3.  Fügen Sie Ihren Code hinzu und erstellen Sie einen Pull Request!
 
+[ico-version]: https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=white
+[ico-license]: https://img.shields.io/badge/License-GPL_v2-blue.svg
+[link-repo]: https://github.com/LJL-Group/LJL-Quiz/
+
 ---
