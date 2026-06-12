@@ -1,3 +1,8 @@
+![GitHub Repo stars](https://img.shields.io/github/stars/LJL-Group/LJL-Quiz)
+![GitHub watchers](https://img.shields.io/github/watchers/LJL-Group/LJL-Quiz)
+![GitHub forks](https://img.shields.io/github/forks/LJL-Group/LJL-Quiz)
+[![Software License][ico-license]](LICENSE)
+
 # 🎮🎬 LJL Quiz: Gamer & Culture Challenge
 
 ## Updates
